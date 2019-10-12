@@ -1,43 +1,48 @@
+import random
 import string
 
-def randomString_typeA(stringLength=16):
-    """Generate a random string of fixed length """
-    letters = string.ascii_letters
-    return ''.join(random.choice(letters) for i in range(stringLength))
+passwordLength = int(input("Pasword length:"))
+print(type(passwordLength))
 
-print ("Random String is ", randomString() )
-print ("Random String is ", randomString() )
-print ("Random String is ", randomString() )
+print("Please slect from the below options to create a password of length "+str(passwordLength))
+print("A: letters only")
+print("B: letters and numbers")
+print("C: letters, numbers and special characters")
+print("D: letters and special characters")
+print("E: numbers and special characters")
+print("F: numbers only")
+print("G: special characters only")
 
-def randomString_typeB(stringLength=16):
-    letters = string.ascii_letters + string.digits
-    return ''.join(random.choice(letters) for i in range(stringLength))
+methodType = input()
 
-def randomString_typeC(stringLength=16):
-    letters = string.ascii_letters + string.digits + string.punctuation
-    return ''.join(random.choice(letters) for i in range(stringLength))
+def randomString(methodType, num):
+    string_A = string.ascii_letters
+    string_B = string.ascii_letters + string.digits
+    string_C = string.ascii_letters + string.digits + string.punctuation
+    string_D = string.ascii_letters + string.punctuation
+    string_E = string.digits + string.punctuation
+    string_F = string.digits
+    string_G = string.punctuation
+    string_type = ""
+    if methodType == "A":
+        print("here")
+        string_type = string_A
+    elif methodType == "B":
+        string_type = string_B
+    elif methodType == "C":
+        string_type = string_C
+    elif methodType == "D":
+        string_type = string_D
+    elif methodType == "E":
+        string_type = string_E
+    elif methodType == "F":
+        string_type = string_F
+    else:
+        string_type = string_G
+    return ''.join(random.choice(string_type) for i in range(num))
 
-def randomString_typeD(stringLength=16):
-    letters = string.ascii_letters + string.punctuation
-    return ''.join(random.choice(letters) for i in range(stringLength))
-
-def randomString_typeE(stringLength=16):
-    letters = string.digits + string.punctuation
-    return ''.join(random.choice(letters) for i in range(stringLength))
-
-def randomString_typeF(stringLength=16):
-    letters = string.digits
-    return ''.join(random.choice(letters) for i in range(stringLength))
-
-def randomString_typeG(stringLength=16):
-    letters = string.punctuation
-    return ''.join(random.choice(letters) for i in range(stringLength))
-
-
-print ("Random String is ", randomString_typeA() )
-print ("Random String is ", randomString_typeB() )
-print ("Random String is ", randomString_typeC() )
-print ("Random String is ", randomString_typeD() )
-print ("Random String is ", randomString_typeE() )
-print ("Random String is ", randomString_typeF() )
-print ("Random String is ", randomString_typeG() )
+methodTypeDictionary = ["A","B","C","D","E","F","G"]
+if methodType in methodTypeDictionary:
+    print("Password is ",randomString(methodType, passwordLength))
+else:
+    print("Invalid option, exiting")
